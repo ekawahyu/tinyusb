@@ -1,3 +1,11 @@
+System Requirement
+==================
+STM32F4 Discovery - USB mini cable
+UART PA2 PA3 - USB to serial
+Plug USB micro cable - USB micro cable
+Install HoRNDIS on macOS - make instruction github from source
+
+
 Building LwIP Webserver Example
 ===============================
 
@@ -43,6 +51,7 @@ This tutorial gets you started immediately to test LwIP webserver application on
     ```
     arm-none-eabi-gdb _build/stm32f407disco/net_lwip_webserver.elf
     (gdb) target extended-remote localhost:3333
+    (gdb) monitor [target current] configure -event gdb-detach {shutdown}
     (gdb) tui enable
     ```
 
