@@ -1,8 +1,8 @@
 System Requirement
 ==================
-STM32F4 Discovery - USB mini cable
-UART PA2 PA3 - USB to serial
-Plug USB micro cable - USB micro cable
+STM32F401 Black Pill - USB type C cable
+UART PA2 PA3 - USB to serial ???
+STLink-V2
 Install HoRNDIS on macOS, Linux and Windows should work out-of-the-box
 
 
@@ -34,22 +34,22 @@ This tutorial gets you started immediately to test LwIP webserver application on
 4. Build the project:
     ```
     cd examples/device/net_lwip_webserver/
-    make DEBUG=1 BOARD=stm32f407disco all
+    make DEBUG=1 BOARD=stm32f401blackpill all
     ```
     You can remove `DEBUG=1` when building the release version.
 
-5. Flash the binary with on-board STLink:
+5. Flash the binary with STLink-V2:
     ```
-    openocd -f interface/stlink.cfg -f target/stm32f4x.cfg -c "program _build/stm32f407disco/net_lwip_webserver.bin reset exit 0x08000000"
+    openocd -f interface/stlink.cfg -f target/stm32f4x.cfg -c "program _build/stm32f401blackpill/net_lwip_webserver.bin reset exit 0x08000000"
     ```
 
 6. For debugging, flash the binary but do not exit from OpenOCD:
     ```
-    openocd -f interface/stlink.cfg -f target/stm32f4x.cfg -c "program _build/stm32f407disco/net_lwip_webserver.bin resethalt 0x08000000"
+    openocd -f interface/stlink.cfg -f target/stm32f4x.cfg -c "program _build/stm32f401blackpill/net_lwip_webserver.bin reset 0x08000000"
     ```
 7. Start OpenOCD server:
     ```
-    arm-none-eabi-gdb _build/stm32f407disco/net_lwip_webserver.elf
+    arm-none-eabi-gdb _build/stm32f401blackpill/net_lwip_webserver.elf
     (gdb) target extended-remote localhost:3333
     (gdb) monitor [target current] configure -event gdb-detach {shutdown}
     (gdb) tui enable
